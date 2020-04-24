@@ -17,7 +17,7 @@ namespace tst17_SalesWebMvc.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Teste Alteração do Texto About.";
 
             return View();
         }
