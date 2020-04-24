@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using tst17_SalesWebMvc.Models;
+using tst17_SalesWebMvc.Models.ViewModels;
 
 namespace tst17_SalesWebMvc.Controllers
 {
