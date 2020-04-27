@@ -14,6 +14,9 @@ namespace tst17_SalesWebMvc.Data
         {
         }
 
-        public DbSet<tst17_SalesWebMvc.Models.Department> Department { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Seller> Seller { get; set; }
+        public DbSet<SallesRecord> SallesRecord { get; set; }
+
     }
 }
