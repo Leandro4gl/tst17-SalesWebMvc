@@ -39,14 +39,17 @@ namespace tst17_SalesWebMvc
             services.AddDbContext<tst17_SalesWebMvcContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("tst17_SalesWebMvcContext"),
                         builder => builder.MigrationsAssembly("tst17_SalesWebMvc")));
+
+            services.AddScoped<SeedingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seedingService.Seed();
             }
             else
             {
