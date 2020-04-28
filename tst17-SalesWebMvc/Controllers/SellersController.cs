@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using tst17_SalesWebMvc.Services;
+using tst17_SalesWebMvc.Models;
 
 namespace tst17_SalesWebMvc.Controllers
 {
@@ -22,6 +23,19 @@ namespace tst17_SalesWebMvc.Controllers
             var list = _sellerService.FindAll();
             
             return View(list);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Seller seller)
+        {
+            _sellerService.Insert(seller);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
