@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using tst17_SalesWebMvc.Services;
 using tst17_SalesWebMvc.Models;
 using tst17_SalesWebMvc.Models.ViewModels;
+using Remotion.Linq.Clauses;
+using tst17_SalesWebMvc.Services.Exceptions;
+using System.Data;
 
 namespace tst17_SalesWebMvc.Controllers
 {
@@ -24,7 +27,7 @@ namespace tst17_SalesWebMvc.Controllers
         public IActionResult Index()
         {
             var list = _sellerService.FindAll();
-            
+
             return View(list);
         }
 
@@ -81,6 +84,51 @@ namespace tst17_SalesWebMvc.Controllers
             }
 
             return View(obj);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            List<Department> departments = _departmentService.FindAll();
+            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departments = departments };
+
+            return View(viewModel);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Seller seller)
+        {
+            if (id != seller.Id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _sellerService.Update(seller);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DBConcurrencyException)
+            {
+                return BadRequest();
+            }
+
         }
     }
 }
