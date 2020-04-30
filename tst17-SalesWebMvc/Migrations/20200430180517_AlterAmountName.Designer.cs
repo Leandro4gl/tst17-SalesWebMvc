@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tst17_SalesWebMvc.Data;
 
 namespace tst17_SalesWebMvc.Migrations
 {
     [DbContext(typeof(tst17_SalesWebMvcContext))]
-    partial class tst17_SalesWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20200430180517_AlterAmountName")]
+    partial class AlterAmountName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

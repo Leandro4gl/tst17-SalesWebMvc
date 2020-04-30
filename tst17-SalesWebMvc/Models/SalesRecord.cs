@@ -6,7 +6,7 @@ namespace tst17_SalesWebMvc.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public double Amout { get; set; }
+        public double Amount { get; set; }
         public SaleStatus Status { get; set; }
         public Seller Seller { get; set; }
 
@@ -18,7 +18,7 @@ namespace tst17_SalesWebMvc.Models
         {
             Id = id;
             Date = date;
-            Amout = amout;
+            Amount = amout;
             Status = status;
             Seller = seller;
         }
